@@ -108,4 +108,24 @@ bool vote(std::string_view name)
 // Print the winner (or winners) of the election
 void print_winner()
 {
-    int max_
+    int max_votes = 0;
+
+    // Step 1: Find the maximum number of votes any candidate received
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > max_votes)
+        {
+            max_votes = candidates[i].votes;
+        }
+    }
+
+    // Step 2: Print the name of any candidate who matches that maximum amount
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == max_votes)
+        {
+            // Using a format string "{}" ensures safe printing of variables
+            std::println("{}", candidates[i].name);
+        }
+    }
+}
